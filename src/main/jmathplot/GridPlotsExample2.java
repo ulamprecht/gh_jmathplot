@@ -15,9 +15,7 @@ public class GridPlotsExample2 {
         // define your data
         double[] x = increment(1.0, 0.25, 5.0); // x = 0.0:0.1:1.0
         double[] y = increment(0.1, 0.25, 5.0);// y = 0.0:0.05:1.0
-        double[][] z1 = f1(x, y);
-        double[][] z2 = f2(x, y);
-        double[][] z3 = f3(x, y);
+
         double[][] z4 = f4(x, y);
         double[][] z5 = f5(x, y);
 
@@ -38,53 +36,6 @@ public class GridPlotsExample2 {
         frame.setContentPane(plot);
         frame.setVisible(true);
 
-    }
-
-    // function definition: z=cos(PI*x)*sin(PI*y)
-    public static double f1(double x, double y) {
-        double z = cos(x * PI) * sin(y * PI);
-        return z;
-    }
-
-    // grid version of the function
-    public static double[][] f1(double[] x, double[] y) {
-        double[][] z = new double[y.length][x.length];
-        for (int i = 0; i < x.length; i++)
-            for (int j = 0; j < y.length; j++)
-                z[j][i] = f1(x[i], y[j]);
-        return z;
-    }
-
-    // another function definition: z=sin(PI*x)*cos(PI*y)
-    public static double f2(double x, double y) {
-        double z = sin(x * PI) * cos(y * PI);
-        return z;
-    }
-
-    // grid version of the function
-    public static double[][] f2(double[] x, double[] y) {
-        double[][] z = new double[y.length][x.length];
-        for (int i = 0; i < x.length; i++)
-            for (int j = 0; j < y.length; j++)
-                z[j][i] = f2(x[i], y[j]);
-        return z;
-    }
-
-    // PF=p/(1-p)*R
-    public static double f3(double x, double y) {
-        // Plot(x/(1-x)*1, Color = Purple);
-
-        double z = (x / (1.0 - x)) * y;
-        return z;
-    }
-
-    // grid version of the function
-    public static double[][] f3(double[] x, double[] y) {
-        double[][] z = new double[y.length][x.length];
-        for (int i = 0; i < x.length; i++)
-            for (int j = 0; j < y.length; j++)
-                z[j][i] = f3(x[i], y[j]);
-        return z;
     }
 
     // P=PF/(PF+a * Rwl))
