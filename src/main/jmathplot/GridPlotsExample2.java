@@ -17,7 +17,7 @@ public class GridPlotsExample2 {
         double[] y = increment(0.1, 0.25, 5.0);// y = 0.0:0.05:1.0
 
         double[][] z4 = f4(x, y);
-        double[][] z5 = f5(x, y);
+        double[][] z5 = calcUseAlpha(x, y);
 
         // create your PlotPanel (you can use it as a JPanel) with a legend at
         // SOUTH
@@ -55,7 +55,7 @@ public class GridPlotsExample2 {
         return z;
     }
 
-    public static double f5(double x, double y) {
+    public static double calcUseAlpha(double x, double y) {
         // Plot(x/(1-x)*1, Color = Purple);
 
         double z = x / (x + 0.5 * y);
@@ -63,11 +63,11 @@ public class GridPlotsExample2 {
     }
 
     // grid version of the function
-    public static double[][] f5(double[] x, double[] y) {
+    public static double[][] calcUseAlpha(double[] x, double[] y) {
         double[][] z = new double[y.length][x.length];
         for (int i = 0; i < x.length; i++)
             for (int j = 0; j < y.length; j++)
-                z[j][i] = f5(x[i], y[j]);
+                z[j][i] = calcUseAlpha(x[i], y[j]);
         return z;
     }
 

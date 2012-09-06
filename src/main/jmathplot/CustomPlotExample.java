@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import org.math.plot.Plot2DPanel;
 import org.math.plot.plotObjects.BaseLabel;
 
+//Example taken from: http://jmathtools.berlios.de/doku.php?id=jmathplot:tutorial
 public class CustomPlotExample {
     public static void main(String[] args) {
 

@@ -8,7 +8,7 @@ import static org.math.array.DoubleArray.increment;
 import javax.swing.JFrame;
 
 import org.math.plot.Plot3DPanel;
-
+//Example taken from: http://jmathtools.berlios.de/doku.php?id=jmathplot:tutorial
 public class GridPlotsExample {
     public static void main(String[] args) {
 
