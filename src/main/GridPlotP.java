@@ -1,4 +1,4 @@
-package jmathplot;
+
 
 import static org.math.array.DoubleArray.increment;
 
