@@ -1,37 +1,42 @@
 package jmathplot;
 
-import static java.lang.Math.PI;
-import static java.lang.Math.cos;
-import static java.lang.Math.sin;
 import static org.math.array.DoubleArray.increment;
 
 import javax.swing.JFrame;
 
 import org.math.plot.Plot3DPanel;
 
-public class GridPlotsExample2 {
+/**
+ * 3d chart of formula P = PF/(PF+RWL)
+ *
+ */
+public final class GridPlotP {
     public static void main(String[] args) {
 
         // define your data
-        double[] x = increment(1.0, 0.25, 5.0); // x = 0.0:0.1:1.0
-        double[] y = increment(0.1, 0.25, 5.0);// y = 0.0:0.05:1.0
 
-        double[][] z4 = f4(x, y);
-        double[][] z5 = calcUseAlpha(x, y);
+        // range for pf
+        double[] x = increment(1.0, 0.25, 5.0); // x = 0.0:0.1:1.0
+
+        // range for rwl
+        double[] y = increment(0.0, 0.25, 5.0);// y = 0.0:0.05:1.0
+
+        double[][] dataSet = calc(x, y);
+        double[][] dataSetWithAlpha = calcUseAlpha(x, y);
 
         // create your PlotPanel (you can use it as a JPanel) with a legend at
         // SOUTH
         Plot3DPanel plot = new Plot3DPanel("SOUTH");
 
         // add grid plot to the PlotPanel
-        // plot.addGridPlot("z=cos(PI*x)*sin(PI*y)", x, y, z1);
-        // plot.addGridPlot("z=sin(PI*x)*cos(PI*y)", x, y, z2);
-        // plot.addGridPlot("z=(x/(1-x))*y", x, y, z3);
-        plot.addGridPlot("z = x/(x+y)", x, y, z4);
-        plot.addGridPlot("z = x/(x+0.5y)", x, y, z5);
+        plot.addGridPlot("P = PF/(PF+RWL)", x, y, dataSet);
+        plot.addGridPlot("P = PF/(PF+alpha*RWL), alpha=0.5", x, y, dataSetWithAlpha);
+        plot.setAxisLabel(0, "PF");
+        plot.setAxisLabel(1, "RWL");
+        plot.setAxisLabel(2, "P");
 
         // put the PlotPanel in a JFrame like a JPanel
-        JFrame frame = new JFrame("a plot panel");
+        JFrame frame = new JFrame("P,PF,RWL chart");
         frame.setSize(600, 600);
         frame.setContentPane(plot);
         frame.setVisible(true);
@@ -39,7 +44,7 @@ public class GridPlotsExample2 {
     }
 
     // P=PF/(PF+a * Rwl))
-    public static double f4(double x, double y) {
+    private static double calc(double x, double y) {
         // Plot(x/(1-x)*1, Color = Purple);
 
         double z = x / (x + y);
@@ -47,15 +52,15 @@ public class GridPlotsExample2 {
     }
 
     // grid version of the function
-    public static double[][] f4(double[] x, double[] y) {
+    private static double[][] calc(double[] x, double[] y) {
         double[][] z = new double[y.length][x.length];
         for (int i = 0; i < x.length; i++)
             for (int j = 0; j < y.length; j++)
-                z[j][i] = f4(x[i], y[j]);
+                z[j][i] = calc(x[i], y[j]);
         return z;
     }
 
-    public static double calcUseAlpha(double x, double y) {
+    private static double calcUseAlpha(double x, double y) {
         // Plot(x/(1-x)*1, Color = Purple);
 
         double z = x / (x + 0.5 * y);
@@ -63,12 +68,11 @@ public class GridPlotsExample2 {
     }
 
     // grid version of the function
-    public static double[][] calcUseAlpha(double[] x, double[] y) {
+    private static double[][] calcUseAlpha(double[] x, double[] y) {
         double[][] z = new double[y.length][x.length];
         for (int i = 0; i < x.length; i++)
             for (int j = 0; j < y.length; j++)
                 z[j][i] = calcUseAlpha(x[i], y[j]);
         return z;
     }
-
 }
