@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import org.math.plot.Plot3DPanel;
 
 /**
- * 3d chart of formula P = PF/(PF+RWL)
+ * 3d chart of formula P = PF/(PF+R)
  *
  * @author uwe.lamprecht
  */
@@ -30,14 +30,14 @@ public final class GridPlotP {
         Plot3DPanel plot = new Plot3DPanel("SOUTH");
 
         // add grid plot to the PlotPanel
-        plot.addGridPlot("P = PF/(PF+RWL)", x, y, dataSet);
-        plot.addGridPlot("P = PF/(PF+alpha*RWL), alpha=0.5", x, y, dataSetWithAlpha);
+        plot.addGridPlot("P = PF/(PF+R)", x, y, dataSet);
+        plot.addGridPlot("P = PF/(PF+alpha*R), alpha=0.5", x, y, dataSetWithAlpha);
         plot.setAxisLabel(0, "PF");
-        plot.setAxisLabel(1, "RWL");
+        plot.setAxisLabel(1, "R");
         plot.setAxisLabel(2, "P");
 
         // put the PlotPanel in a JFrame like a JPanel
-        JFrame frame = new JFrame("P,PF,RWL chart");
+        JFrame frame = new JFrame("P,PF,R chart");
         frame.setSize(600, 600);
         frame.setContentPane(plot);
         frame.setVisible(true);
